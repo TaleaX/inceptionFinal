@@ -4,22 +4,30 @@ version: '3.8'
 networks:
   inception: {}
 
+volumes:
+  mariadb_volumn:
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/talea/data/mariadb
+
+  wordpress_volumn:
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/talea/data/wordpress
+
 services:
   mariadb:
     container_name: mariadb
     image: mariadb
-    build:
-      context: ./requirements/mariadb
-      args:
-        - DB_NAME=${DB_NAME}
-        - DB_USER=${DB_USER}
-        - DB_PASSWORD=${DB_PASSWORD}
-        - DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+    build: ./requirements/mariadb
     networks:
       - inception
     volumes:
       - mariadb_volumn:/var/lib/mysql
-    #restart: unless-stopped
+    env_file: .env
+    restart: unless-stopped
 
   wordpress:
     container_name: wordpress
@@ -32,14 +40,14 @@ services:
     env_file: .env
     depends_on:
       - mariadb
-  #  restart: unless-stopped
+    restart: unless-stopped
 
   nginx:
     container_name: nginx
     image: nginx
     build: ./requirements/nginx
     ports:
-      - "4242:4242"
+      - "443:443"
     networks:
       - inception
     volumes:
@@ -47,20 +55,4 @@ services:
     depends_on:
       - wordpress
       - mariadb
-    #restart: unless-stopped
-
-
-volumes:
-  mariadb_volumn:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/talea/data/mariadb
-
-  wordpress_volumn:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/talea/data/wordpress
+    restart: unless-stopped
