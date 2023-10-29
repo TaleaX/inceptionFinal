@@ -9,8 +9,6 @@ RUN apt update && apt install -y nginx openssl && rm /etc/nginx/sites-enabled/de
 
 COPY ./conf/nginx.conf /etc/nginx/conf.d/wordpress.conf
 
-#COPY ./index.html /usr/share/nginx/wordpress/index.html
-
 EXPOSE 443
 
 CMD ["nginx", "-g", "daemon off;"]

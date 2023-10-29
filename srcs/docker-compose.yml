@@ -9,13 +9,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/talea/data/mariadb
+      device: /home/tdehne/data/mariadb
 
   wordpress_volumn:
     driver_opts:
       type: none
       o: bind
-      device: /home/talea/data/wordpress
+      device: /home/tdehne/data/wordpress
 
 services:
   mariadb:

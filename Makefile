@@ -3,10 +3,10 @@ all: createDir
 
 
 createDir:
-	@sudo mkdir -p /home/talea/data/mariadb
-	@sudo mkdir -p /home/talea/data/wordpress
-	@sudo chmod 777 /home/talea/data/wordpress
-	@sudo chmod 777 /home/talea/data/mariadb
+	@sudo mkdir -p /home/tdehne/data/mariadb
+	@sudo mkdir -p /home/tdehne/data/wordpress
+	@sudo chmod 777 /home/tdehne/data/wordpress
+	@sudo chmod 777 /home/tdehne/data/mariadb
 
 build: createDir
 	@sudo docker-compose  -f ./srcs/docker-compose.yml build
@@ -34,7 +34,7 @@ clean:
 
 fclean: clean
 	@sudo docker system prune -af
-	@sudo rm -rf /home/talea/data/wordpress/*
-	@sudo rm -rf /home/talea/data/mariadb/*
+	@sudo rm -rf /home/tdehne/data/wordpress/*
+	@sudo rm -rf /home/tdehne/data/mariadb/*
 
 re: fclean all
