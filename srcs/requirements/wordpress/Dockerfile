@@ -9,7 +9,7 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 RUN mkdir -p /run/php
 EXPOSE 9000
 
-#COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d
+COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d
 COPY ./conf/config.sh /conf/config.sh
 
 RUN chmod +x /conf/config.sh && chmod +x /usr/share/nginx/wordpress
