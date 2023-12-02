@@ -10,3 +10,5 @@ service mariadb stop
 
 echo "[mysqld]" >> /etc/mysql/my.cnf
 echo "user=mysql" >> /etc/mysql/my.cnf
+
+chown -R mysql:mysql /var/lib/mysql/
