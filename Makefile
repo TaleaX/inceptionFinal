@@ -14,6 +14,8 @@ build: createDir
 forceBuild: createDir
 	@sudo docker compose  -f ./srcs/docker-compose.yml up --build -d
 
+nginx:
+	@sudo docker compose -f ./srcs/docker-compose.yml up nginx --build -d
 
 mariadb: createDir
 	@sudo docker compose -f ./srcs/docker-compose.yml up mariadb --build -d
